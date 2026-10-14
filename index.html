@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Собрать ПК самостоятельно: плюсы, минусы и пошаговые инструкции</title>
+<style>
+:root{
+  --primary:#2563eb; --primary-hover:#1d4ed8; --bg:#f1f5f9; --card-bg:#ffffff;
+  --text:#0f172a; --text-secondary:#64748b; --border:#e2e8f0;
+  --danger:#dc2626; --success:#16a34a; --dark:#0f172a;
+}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--text);margin:0;line-height:1.7}
+.container{max-width:1150px;margin:0 auto;padding:0 1.25rem}
+
+/* ---------- НАВИГАЦИЯ ---------- */
+.top-nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.97);
+  box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.nav-inner{max-width:1150px;margin:0 auto;padding:.8rem 1.25rem;display:flex;
+  align-items:center;gap:.35rem;flex-wrap:wrap}
+.logo{color:#fff;font-weight:800;text-decoration:none;font-size:1.05rem;margin-right:auto;white-space:nowrap}
+.logo span{color:#60a5fa}
+.top-nav a.nav-link{color:#cbd5e1;text-decoration:none;font-weight:600;font-size:.92rem;
+  padding:.35rem .8rem;border-radius:6px;transition:all .2s}
+.top-nav a.nav-link:hover{color:#fff;background:rgba(255,255,255,.1)}
+.top-nav a.nav-link.active{color:#fff;background:var(--primary)}
+
+/* ---------- ХИРО ---------- */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 55%,#2563eb 100%);
+  color:#fff;padding:4.5rem 0 4rem;text-align:center}
+.hero h1{font-size:clamp(1.8rem,4.5vw,2.7rem);margin:0 0 1rem;line-height:1.25}
+.hero p{color:#cbd5e1;max-width:660px;margin:0 auto 2rem;font-size:1.12rem}
+.hero .btn{background:#fff;color:var(--primary)}
+.hero .btn:hover{background:#e2e8f0}
+
+/* ---------- ЗАГОЛОВКИ ---------- */
+.page-head{padding:3rem 0 1.5rem;text-align:center}
+.page-head h1{font-size:2.1rem;margin:0 0 .6rem}
+.page-head p{color:var(--text-secondary);max-width:720px;margin:0 auto;font-size:1.08rem}
+h2.section-title{font-size:1.6rem;margin:2.5rem 0 1rem;display:inline-block;
+  border-bottom:3px solid var(--primary);padding-bottom:.3rem}
+h3{margin:1.8rem 0 .7rem}
+
+/* ---------- КАРТОЧКИ ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;margin:1.5rem 0}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;
+  padding:1.4rem;transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.card h3{margin:0 0 .5rem;font-size:1.15rem}
+.card p{color:var(--text-secondary);margin:0;font-size:.95rem}
+.card a{color:inherit;text-decoration:none}
+
+/* ---------- ТАБЛИЦЫ ---------- */
+.table-wrap{overflow-x:auto;margin:1.2rem 0 1.6rem;border-radius:12px;
+  box-shadow:0 1px 6px rgba(0,0,0,.07)}
+table.data-table{width:100%;border-collapse:collapse;background:var(--card-bg);font-size:.94rem;min-width:520px}
+table.data-table th{background:var(--dark);color:#fff;text-align:left;padding:.75rem 1rem;font-size:.88rem;
+  text-transform:uppercase;letter-spacing:.03em}
+table.data-table td{padding:.7rem 1rem;border-bottom:1px solid var(--border);vertical-align:top}
+table.data-table tbody tr:nth-child(even){background:#f8fafc}
+table.data-table tbody tr:hover{background:#eff6ff}
+table.data-table .good{color:var(--success);font-weight:700}
+table.data-table .bad{color:var(--danger);font-weight:700}
+.tbl-caption{font-size:.85rem;color:var(--text-secondary);margin-top:-1rem;margin-bottom:1.4rem}
+
+/* ---------- ВРЕЗКИ ---------- */
+.callout{border-radius:10px;padding:1rem 1.25rem;margin:1.3rem 0;font-size:.97rem}
+.callout.tip{background:#eff6ff;border-left:5px solid var(--primary)}
+.callout.warn{background:#fffbeb;border-left:5px solid #d97706}
+.callout.danger{background:#fef2f2;border-left:5px solid var(--danger)}
+.callout b:first-child{display:block;margin-bottom:.25rem}
+
+/* ---------- ШАГИ ---------- */
+.step{display:flex;gap:1.1rem;margin:1.4rem 0;background:var(--card-bg);
+  border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem}
+.step-num{flex-shrink:0;width:44px;height:44px;border-radius:50%;background:var(--primary);
+  color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
+.step h3{margin:.15rem 0 .5rem;font-size:1.12rem}
+.step p{margin:0;color:#334155;font-size:.96rem}
+
+/* ---------- БЕЙДЖИ ---------- */
+.badge{display:inline-block;font-size:.75rem;font-weight:700;padding:.2rem .6rem;
+  border-radius:99px;margin-left:.4rem;vertical-align:middle}
+.badge.blue{background:#dbeafe;color:#1d4ed8}
+.badge.green{background:#dcfce7;color:#15803d}
+.badge.red{background:#fee2e2;color:#b91c1c}
+
+/* ---------- КНОПКА ---------- */
+.cta-block{text-align:center;margin:3rem 0 1rem}
+.btn{background:var(--primary);color:#fff;padding:.95rem 2.2rem;border-radius:10px;
+  text-decoration:none;font-weight:700;display:inline-block;transition:all .2s;
+  box-shadow:0 4px 14px rgba(37,99,235,.35)}
+.btn:hover{background:var(--primary-hover);transform:translateY(-2px)}
+
+/* ---------- ВИДЕО ---------- */
+.video-block{margin:2rem 0;background:var(--card-bg);border:1px solid var(--border);
+  border-radius:14px;padding:1.4rem;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.video-block .video-title{font-weight:700;margin-bottom:.2rem}
+.video-block .video-meta{color:var(--text-secondary);font-size:.88rem;margin-bottom:1rem}
+.video-embed{position:relative;padding-bottom:56.25%;height:0;border-radius:10px;overflow:hidden}
+.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* ---------- FAQ ---------- */
+details.faq{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;margin:.7rem 0}
+details.faq summary{padding:1rem 1.25rem;font-weight:700;cursor:pointer}
+details.faq[open] summary{border-bottom:1px solid var(--border)}
+details.faq p{padding:1rem 1.25rem;margin:0;color:#334155;font-size:.96rem}
+
+/* ---------- ФУТЕР ---------- */
+footer{background:var(--dark);color:#cbd5e1;padding:3rem 0 2rem;margin-top:4.5rem;font-size:.9rem}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2rem}
+.footer-grid h4{color:#fff;margin:0 0 1rem;font-size:1rem}
+.footer-grid a{color:#94a3b8;text-decoration:none;display:block;margin-bottom:.45rem}
+.footer-grid a:hover{color:#fff}
+.sources{list-style:none;padding:0;margin:0;font-size:.85rem;color:#94a3b8}
+.sources li{margin-bottom:.45rem}
+.sources a{color:#93c5fd;text-decoration:none}
+.sources a:hover{text-decoration:underline}
+.credit{margin-top:2.2rem;border-top:1px solid rgba(255,255,255,.12);padding-top:1.3rem;
+  text-align:center;color:#94a3b8;font-size:.88rem}
+.credit b{color:#60a5fa}
+
+@media(max-width:600px){
+  .hero{padding:3rem 0 2.5rem}
+  .page-head h1{font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+<nav class="top-nav"><div class="nav-inner"><a class="logo" href="index.html">Сборка<span>ПК</span>.гайд</a><a class="nav-link active" href="index.html">Главная</a><a class="nav-link" href="pros-cons.html">Плюсы и минусы</a><a class="nav-link" href="pick-parts.html">Подбор комплектующих</a><a class="nav-link" href="build-guide.html">Пошаговая сборка</a><a class="nav-link" href="builds.html">Примеры сборок</a></div></nav>
+<main>
+
+<div class="hero">
+  <div class="container">
+    <h1>Собрать ПК самостоятельно:<br>плюсы, минусы и пошаговые инструкции</h1>
+    <p>Помогаем разобраться, стоит ли собирать ПК самому, как подобрать совместимые комплектующие и не ошибиться при сборке.</p>
+    <a class="btn" href="pick-parts.html">Начать с основ &rarr;</a>
+  </div>
+</div>
+
+<div class="container">
+  <section>
+    <h2 class="section-title">Сайт в цифрах</h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">
+      <div class="card" style="text-align:center">
+        <div style="font-size:2rem;font-weight:800;color:var(--primary)">2–4 ч</div>
+        <p>займёт сборка у новичка</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:2rem;font-weight:800;color:var(--primary)">10–20%</div>
+        <p>экономии по сравнению с готовым ПК</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:2rem;font-weight:800;color:var(--primary)">7</div>
+        <p>основных компонентов в сборке</p>
+      </div>
+      <div class="card" style="text-align:center">
+        <div style="font-size:2rem;font-weight:800;color:var(--primary)">12</div>
+        <p>пошаговых этапов сборки в гайде</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Кому подойдёт этот сайт</h2>
+    <div class="grid">
+      <div class="card"><h3>🌱 Новички</h3><p>Собирают первый ПК и боятся ошибиться или что-то сломать.</p></div>
+      <div class="card"><h3>🎮 Геймеры</h3><p>Нужна оптимальная сборка под актуальные игры без лишних трат.</p></div>
+      <div class="card"><h3>🎨 Специалисты</h3><p>Дизайнеры, монтажёры и 3D-художники — для сбалансированной рабочей станции.</p></div>
+      <div class="card"><h3>💰 Экономные</h3><p>Хотят мощный ПК без переплат за «брендовый» корпус и маркетинг.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Разделы сайта</h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))">
+      <a class="card" href="pros-cons.html"><h3>Плюсы и минусы</h3><p>Честный разбор: когда сборка оправдана, а когда лучше взять готовое решение. С таблицей сравнения.</p></a>
+      <a class="card" href="pick-parts.html"><h3>Подбор комплектующих</h3><p>Гайд по каждому компоненту с таблицами совместимости: сокеты, память, блоки питания.</p></a>
+      <a class="card" href="build-guide.html"><h3>Пошаговая сборка</h3><p>Инструкция из 12 шагов, встроенный видео-гайд и таблица «если не включается».</p></a>
+      <a class="card" href="builds.html"><h3>Примеры сборок</h3><p>Готовые конфигурации под офис, игры и работу — с бюджетами и таблицами.</p></a>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Частые ошибки при сборке</h2>
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Ошибка</th><th>Чем грозит</th><th>Как избежать</th></tr></thead>
+        <tbody>
+          <tr><td>Несовместимый сокет процессора и платы</td><td class="bad">ПК не запустится</td><td>Сверяйте сокет в таблице совместимости</td></tr>
+          <tr><td>Слишком слабый блок питания</td><td class="bad">Выключения, нестабильность</td><td>Запас мощности 20–30% от потребления системы</td></tr>
+          <tr><td>Память не той частоты для процессора</td><td class="bad">ОЗУ работает медленнее</td><td>Проверяйте поддерживаемую частоту платы</td></tr>
+          <tr><td>«Глухой» корпус без вентиляции</td><td class="bad">Перегрев, троттлинг</td><td>Корпус с сетчатыми фронтовыми панелями</td></tr>
+          <tr><td>Забыли про кабель питания CPU (8-pin)</td><td class="bad">Чёрный экран при запуске</td><td>Сверяйтесь с чек-листом первого запуска</td></tr>
+          <tr><td>Наклонные стойки, плата не закреплена</td><td class="bad">Замыкание о корпус</td><td>Проверьте стойки перед монтажом платы</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">Частые вопросы</h2>
+    <details class="faq"><summary>Можно ли собрать ПК дешевле готового?</summary>
+      <p>Да, в большинстве случаев самостоятельная сборка выходит на 10–20% дешевле готового аналога, особенно если следить за акциями. Плюс вы сами контролируете качество каждого компонента.</p></details>
+    <details class="faq"><summary>Сколько времени занимает сборка?</summary>
+      <p>Новичку — 2–4 часа с перерывами. Опытному пользователю — 45–90 минут. Больше всего времени уходит на распаковку, сортировку кабелей и подключение передней панели корпуса.</p></details>
+    <details class="faq"><summary>А если компьютер не включится после сборки?</summary>
+      <p>В 90% случаев дело в мелочах: не до конца вставлена планка памяти, забыли кабель питания процессора или перепутали разъёмы передней панели. На странице сборки есть таблица поиска неисправностей.</p></details>
+    <details class="faq"><summary>Нужны ли специальные инструменты?</summary>
+      <p>Достаточно крестовой отвёртки, стяжек для кабелей и чистого рабочего места. Всё остальное — приятные дополнения, а не необходимость.</p></details>
+  </section>
+
+  <div class="cta-block">
+    <a class="btn" href="build-guide.html">Перейти к пошаговой сборке &rarr;</a>
+  </div>
+</div>
+
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>О проекте</h4>
+        <p style="color:#94a3b8">Учебный сайт-гайд по самостоятельной сборке ПК: от выбора комплектующих до первого запуска системы.</p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <a href="index.html">Главная</a><a href="pros-cons.html">Плюсы и минусы</a><a href="pick-parts.html">Подбор комплектующих</a><a href="build-guide.html">Пошаговая сборка</a><a href="builds.html">Примеры сборок</a>
+      </div>
+      <div>
+        <h4>Источники информации</h4>
+        <ul class="sources">
+          <li><a href="https://hi-tech.mail.ru/review/57070-kak-sobrat-pk-chtoby-hvatilo-nadolgo/" target="_blank" rel="noopener">Hi-Tech Mail.ru</a> — Как собрать ПК, чтобы хватило надолго</li><li><a href="https://ru.msi.com/Landing/how-to-build-a-pc" target="_blank" rel="noopener">MSI</a> — Как собрать ПК: руководство от MSI</li><li><a href="https://ru.wikihow.com/собрать-компьютер" target="_blank" rel="noopener">wikiHow</a> — Как собрать компьютер — wikiHow</li><li><a href="https://hyperpc.ru/blog/gaming-pc/how-build-gaming-pc-yourself" target="_blank" rel="noopener">HYPERPC</a> — Как собрать игровой ПК самому — HYPERPC</li><li><a href="https://andpro.ru/blog/pc/podvodnye-kamni-pri-sborke-pk-instruktsiya-po-pokupke-i-sborke/" target="_blank" rel="noopener">ANDPRO</a> — Подводные камни при сборке ПК — ANDPRO</li><li><a href="https://digital-razor.ru/media/articles/hardware/cpu-mobo-compatibility/" target="_blank" rel="noopener">Digital Razor</a> — Совместимость процессора и материнской платы</li><li><a href="https://club.dns-shop.ru/blog/t-90-kompyuteryi/20005-kak-podobrat-komplektuuschie-dlya-samostoyatelnoi-sborki-pk/" target="_blank" rel="noopener">Клуб DNS</a> — Как подобрать комплектующие — Клуб DNS</li><li><a href="https://tproger.ru/articles/gajd-kak-sobrat-kompyuter-samomu" target="_blank" rel="noopener">Tproger</a> — Гайд: как собрать компьютер самому — Tproger</li><li><a href="https://lifehacker.ru/stoit-li-sobirat-pk/" target="_blank" rel="noopener">Лайфхакер</a> — Стоит ли собирать ПК — Лайфхакер</li><li><a href="https://journal.citilink.ru/articles/kak-luchshe-sobirat-pk-samomu-ili-zakazat-sborku-v-magazine/" target="_blank" rel="noopener">Ситилинк</a> — Собирать самому или заказать сборку — Ситилинк</li><li><a href="https://club.dns-shop.ru/blog/t-90-kompyuteryi/91739-kupit-gotovyii-pk-ili-sobrat-samostoyatelno/" target="_blank" rel="noopener">Клуб DNS (готовый vs сборка)</a> — Купить готовый ПК или собрать самостоятельно</li><li><a href="https://www.youtube.com/watch?v=8cOzLjkyBXI" target="_blank" rel="noopener">Welson (YouTube)</a> — КАК СОБРАТЬ КОМПЬЮТЕР — подробный гайд шаг за шагом для новичков</li><li><a href="https://rutube.ru/video/cc792eb7f2d3c47f68562fdddeae7814/" target="_blank" rel="noopener">Клуб DNS (Rutube)</a> — Как собрать компьютер — тонкости и важные моменты</li>
+        </ul>
+      </div>
+    </div>
+    <div class="credit">
+      <p>Сделано студентом группы <b>129</b> — <b>Сериков Никита</b></p>
+      <p style="font-size:.8rem;color:#64748b">&copy; 2026 Учебный проект по сборке ПК</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Пошаговая сборка ПК: инструкция для новичков</title>
+<style>
+:root{
+  --primary:#2563eb; --primary-hover:#1d4ed8; --bg:#f1f5f9; --card-bg:#ffffff;
+  --text:#0f172a; --text-secondary:#64748b; --border:#e2e8f0;
+  --danger:#dc2626; --success:#16a34a; --dark:#0f172a;
+}
+*{box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);color:var(--text);margin:0;line-height:1.7}
+.container{max-width:1150px;margin:0 auto;padding:0 1.25rem}
+
+/* ---------- НАВИГАЦИЯ ---------- */
+.top-nav{position:sticky;top:0;z-index:50;background:rgba(15,23,42,.97);
+  box-shadow:0 2px 12px rgba(0,0,0,.2)}
+.nav-inner{max-width:1150px;margin:0 auto;padding:.8rem 1.25rem;display:flex;
+  align-items:center;gap:.35rem;flex-wrap:wrap}
+.logo{color:#fff;font-weight:800;text-decoration:none;font-size:1.05rem;margin-right:auto;white-space:nowrap}
+.logo span{color:#60a5fa}
+.top-nav a.nav-link{color:#cbd5e1;text-decoration:none;font-weight:600;font-size:.92rem;
+  padding:.35rem .8rem;border-radius:6px;transition:all .2s}
+.top-nav a.nav-link:hover{color:#fff;background:rgba(255,255,255,.1)}
+.top-nav a.nav-link.active{color:#fff;background:var(--primary)}
+
+/* ---------- ХИРО ---------- */
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 55%,#2563eb 100%);
+  color:#fff;padding:4.5rem 0 4rem;text-align:center}
+.hero h1{font-size:clamp(1.8rem,4.5vw,2.7rem);margin:0 0 1rem;line-height:1.25}
+.hero p{color:#cbd5e1;max-width:660px;margin:0 auto 2rem;font-size:1.12rem}
+.hero .btn{background:#fff;color:var(--primary)}
+.hero .btn:hover{background:#e2e8f0}
+
+/* ---------- ЗАГОЛОВКИ ---------- */
+.page-head{padding:3rem 0 1.5rem;text-align:center}
+.page-head h1{font-size:2.1rem;margin:0 0 .6rem}
+.page-head p{color:var(--text-secondary);max-width:720px;margin:0 auto;font-size:1.08rem}
+h2.section-title{font-size:1.6rem;margin:2.5rem 0 1rem;display:inline-block;
+  border-bottom:3px solid var(--primary);padding-bottom:.3rem}
+h3{margin:1.8rem 0 .7rem}
+
+/* ---------- КАРТОЧКИ ---------- */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem;margin:1.5rem 0}
+.card{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;
+  padding:1.4rem;transition:box-shadow .2s,transform .2s}
+.card:hover{box-shadow:0 10px 28px rgba(0,0,0,.1);transform:translateY(-3px)}
+.card h3{margin:0 0 .5rem;font-size:1.15rem}
+.card p{color:var(--text-secondary);margin:0;font-size:.95rem}
+.card a{color:inherit;text-decoration:none}
+
+/* ---------- ТАБЛИЦЫ ---------- */
+.table-wrap{overflow-x:auto;margin:1.2rem 0 1.6rem;border-radius:12px;
+  box-shadow:0 1px 6px rgba(0,0,0,.07)}
+table.data-table{width:100%;border-collapse:collapse;background:var(--card-bg);font-size:.94rem;min-width:520px}
+table.data-table th{background:var(--dark);color:#fff;text-align:left;padding:.75rem 1rem;font-size:.88rem;
+  text-transform:uppercase;letter-spacing:.03em}
+table.data-table td{padding:.7rem 1rem;border-bottom:1px solid var(--border);vertical-align:top}
+table.data-table tbody tr:nth-child(even){background:#f8fafc}
+table.data-table tbody tr:hover{background:#eff6ff}
+table.data-table .good{color:var(--success);font-weight:700}
+table.data-table .bad{color:var(--danger);font-weight:700}
+.tbl-caption{font-size:.85rem;color:var(--text-secondary);margin-top:-1rem;margin-bottom:1.4rem}
+
+/* ---------- ВРЕЗКИ ---------- */
+.callout{border-radius:10px;padding:1rem 1.25rem;margin:1.3rem 0;font-size:.97rem}
+.callout.tip{background:#eff6ff;border-left:5px solid var(--primary)}
+.callout.warn{background:#fffbeb;border-left:5px solid #d97706}
+.callout.danger{background:#fef2f2;border-left:5px solid var(--danger)}
+.callout b:first-child{display:block;margin-bottom:.25rem}
+
+/* ---------- ШАГИ ---------- */
+.step{display:flex;gap:1.1rem;margin:1.4rem 0;background:var(--card-bg);
+  border:1px solid var(--border);border-radius:12px;padding:1.2rem 1.4rem}
+.step-num{flex-shrink:0;width:44px;height:44px;border-radius:50%;background:var(--primary);
+  color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:1.15rem}
+.step h3{margin:.15rem 0 .5rem;font-size:1.12rem}
+.step p{margin:0;color:#334155;font-size:.96rem}
+
+/* ---------- БЕЙДЖИ ---------- */
+.badge{display:inline-block;font-size:.75rem;font-weight:700;padding:.2rem .6rem;
+  border-radius:99px;margin-left:.4rem;vertical-align:middle}
+.badge.blue{background:#dbeafe;color:#1d4ed8}
+.badge.green{background:#dcfce7;color:#15803d}
+.badge.red{background:#fee2e2;color:#b91c1c}
+
+/* ---------- КНОПКА ---------- */
+.cta-block{text-align:center;margin:3rem 0 1rem}
+.btn{background:var(--primary);color:#fff;padding:.95rem 2.2rem;border-radius:10px;
+  text-decoration:none;font-weight:700;display:inline-block;transition:all .2s;
+  box-shadow:0 4px 14px rgba(37,99,235,.35)}
+.btn:hover{background:var(--primary-hover);transform:translateY(-2px)}
+
+/* ---------- ВИДЕО ---------- */
+.video-block{margin:2rem 0;background:var(--card-bg);border:1px solid var(--border);
+  border-radius:14px;padding:1.4rem;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+.video-block .video-title{font-weight:700;margin-bottom:.2rem}
+.video-block .video-meta{color:var(--text-secondary);font-size:.88rem;margin-bottom:1rem}
+.video-embed{position:relative;padding-bottom:56.25%;height:0;border-radius:10px;overflow:hidden}
+.video-embed iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0}
+
+/* ---------- FAQ ---------- */
+details.faq{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;margin:.7rem 0}
+details.faq summary{padding:1rem 1.25rem;font-weight:700;cursor:pointer}
+details.faq[open] summary{border-bottom:1px solid var(--border)}
+details.faq p{padding:1rem 1.25rem;margin:0;color:#334155;font-size:.96rem}
+
+/* ---------- ФУТЕР ---------- */
+footer{background:var(--dark);color:#cbd5e1;padding:3rem 0 2rem;margin-top:4.5rem;font-size:.9rem}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:2rem}
+.footer-grid h4{color:#fff;margin:0 0 1rem;font-size:1rem}
+.footer-grid a{color:#94a3b8;text-decoration:none;display:block;margin-bottom:.45rem}
+.footer-grid a:hover{color:#fff}
+.sources{list-style:none;padding:0;margin:0;font-size:.85rem;color:#94a3b8}
+.sources li{margin-bottom:.45rem}
+.sources a{color:#93c5fd;text-decoration:none}
+.sources a:hover{text-decoration:underline}
+.credit{margin-top:2.2rem;border-top:1px solid rgba(255,255,255,.12);padding-top:1.3rem;
+  text-align:center;color:#94a3b8;font-size:.88rem}
+.credit b{color:#60a5fa}
+
+@media(max-width:600px){
+  .hero{padding:3rem 0 2.5rem}
+  .page-head h1{font-size:1.6rem}
+}
+</style>
+</head>
+<body>
+<nav class="top-nav"><div class="nav-inner"><a class="logo" href="index.html">Сборка<span>ПК</span>.гайд</a><a class="nav-link" href="index.html">Главная</a><a class="nav-link" href="pros-cons.html">Плюсы и минусы</a><a class="nav-link" href="pick-parts.html">Подбор комплектующих</a><a class="nav-link active" href="build-guide.html">Пошаговая сборка</a><a class="nav-link" href="builds.html">Примеры сборок</a></div></nav>
+<main>
+
+<div class="page-head container">
+  <h1>Пошаговая сборка ПК</h1>
+  <p>От подготовки рабочего места до первого запуска: 12 шагов, встроенный видео-гайд и таблица поиска неисправностей.</p>
+</div>
+
+<div class="container">
+  <div class="callout danger"><b>🚨 Перед началом</b>
+    Собирайте ПК на твёрдой поверхности, не на ковре. Держитесь за металлический корпус перед касанием компонентов, чтобы снять статику. Не прилагайте силу при установке — все разъёмы «защёлкиваются» без усилия.</div>
+
+  <h2 class="section-title">Что понадобится</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Инструмент / материал</th><th>Обязательно?</th><th>Зачем</th></tr></thead>
+      <tbody>
+        <tr><td>Крестовая отвёртка</td><td class="good">Да</td><td>Винты платы, БП, накопителей, кулера</td></tr>
+        <tr><td>Чистый стол и хорошее освещение</td><td class="good">Да</td><td>Не потерять мелкие винты и проставки</td></tr>
+        <tr><td>Кабельные стяжки / липучки</td><td>Желательно</td><td>Аккуратный кабель-менеджмент и продуваемость</td></tr>
+        <tr><td>Термопаста</td><td>Желательно</td><td>Нужна, если кулер не поставляется с уже нанесённой</td></tr>
+        <tr><td>Антистатический браслет</td><td>Опционально</td><td>Доп. защита от статики (можно просто касаться корпуса)</td></tr>
+        <tr><td>Монитор, клавиатура, флешка с установщиком Windows</td><td class="good">Да</td><td>Для первого запуска и установки ОС</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">Видео-инструкция по сборке</h2>
+  <div class="video-block">
+    <div class="video-title">КАК СОБРАТЬ КОМПЬЮТЕР — подробный гайд шаг за шагом для новичков (Welson)</div>
+    <div class="video-meta">Полная сборка от распаковки до первого запуска: тестовый стенд, термопаста, СЖО, кабель-менеджмент.</div>
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/8cOzLjkyBXI" title="Как собрать компьютер — пошаговая инструкция"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p style="font-size:.85rem;color:var(--text-secondary);margin:.8rem 0 0">
+      Если видео не отображается, откройте его напрямую: <a href="https://www.youtube.com/watch?v=8cOzLjkyBXI" target="_blank" rel="noopener">смотреть на YouTube</a>. Ещё одна полезная короткая инструкция — от <a href="https://rutube.ru/video/cc792eb7f2d3c47f68562fdddeae7814/" target="_blank" rel="noopener">Клуба DNS на Rutube</a>.</p>
+  </div>
+
+  <h2 class="section-title">Сборка за 12 шагов</h2>
+
+  <div class="step"><div class="step-num">1</div><div><h3>Подготовьте рабочее место</h3><p>Освободите большой стол, раскладывайте комплектующие на картонных коробках (не на полиэтилене). Найдите инструкцию к материнской плате — она пригодится.</p></div></div>
+  <div class="step"><div class="step-num">2</div><div><h3>Установите процессор</h3><p>Откройте сокетный рычажок, совместите процессор по треугольной метке, уложите в сокет без усилия и опустите рычаг.</p></div></div>
+  <div class="step"><div class="step-num">3</div><div><h3>Установите память</h3><p>Откройте защёлки слотов DIMM, вставьте планки в 2-й и 4-й слоты (для двухканального режима). Нажимайте по краям до щелчка.</p></div></div>
+  <div class="step"><div class="step-num">4</div><div><h3>Установите M.2 SSD</h3><p>Вставьте накопитель под углом в слот M.2 и закрепите винтом. Плата часто уже имеет радиатор для SSD — используйте его.</p></div></div>
+  <div class="step"><div class="step-num">5</div><div><h3>Нанесите термопасту и установите кулер</h3><p>Небольшая капля в центр процессора (или «горох» размером с рисинку). Установите кулер, подключите его кабель в разъём CPU_FAN.</p></div></div>
+  <div class="step"><div class="step-num">6</div><div><h3>Соберите тестовый стенд (опционально)</h3><p>Опытные сборщики проверяют «на коробке» до монтажа в корпус: плата, CPU, память, GPU, БП. Так проще найти проблему до полной сборки.</p></div></div>
+  <div class="step"><div class="step-num">7</div><div><h3>Подготовьте корпус</h3><p>Установите заглушку ввода/вывода (задняя панель платы), проверьте, что стоят медные стойки под отверстия платы.</p></div></div>
+  <div class="step"><div class="step-num">8</div><div><h3>Установите материнскую плату</h3><p>Аккуратно уложите плату на стойки и закрепите винтами. Не перетягивайте — достаточно плотно от руки.</p></div></div>
+  <div class="step"><div class="step-num">9</div><div><h3>Установите блок питания</h3><p>Обычно ставится снизу за перегородкой. Проложите кабели: 24-pin к плате, 8-pin (CPU) в верхний левый разъём платы.</p></div></div>
+  <div class="step"><div class="step-num">10</div><div><h3>Подключите переднюю панель и накопители</h3><p>Разъёмы корпуса (PWR, RESET, USB, аудио) — по инструкции платы. SATA-кабели к SSD/HDD при наличии.</p></div></div>
+  <div class="step"><div class="step-num">11</div><div><h3>Установите видеокарту</h3><p>Снимите нужные заглушки слотов PCIe, вставьте карту до щелчка, подключите PCIe-питание (6+2 pin или 12V-2x6 для новых карт).</p></div></div>
+  <div class="step"><div class="step-num">12</div><div><h3>Первый запуск</h3><p>Подключите монитор к видеокарте (не к материнской плате!), включите питание. Должен появиться экран BIOS. Ура, сборка жива! 🎉</p></div></div>
+
+  <h2 class="section-title">Чек-лист первого запуска</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Проверка</th><th>Ожидаемый результат</th></tr></thead>
+      <tbody>
+        <tr><td>Вентиляторы вращаются</td><td class="good">CPU и корпусные кулеры крутятся</td></tr>
+        <tr><td>На мониторе есть изображение</td><td class="good">Экран POST / логотип платы</td></tr>
+        <tr><td>Диск виден в BIOS</td><td class="good">SSD отображается в списке накопителей</td></tr>
+        <tr><td>Память определяется</td><td class="good">Весь объём ОЗУ виден в BIOS</td></tr>
+        <tr><td>Температуры в норме</td><td class="good">CPU до 40–60°C в простое</td></tr>
+        <tr><td>XMP/EXPO профиль включён</td><td class="good">Память работает на заявленной частоте</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 class="section-title">Если ПК не включается: таблица поиска неисправностей</h2>
+  <div class="table-wrap">
+    <table class="data-table">
+      <thead><tr><th>Симптом</th><th>Вероятная причина</th><th>Что сделать</th></tr></thead>
+      <tbody>
+        <tr><td>Полная тишина, светодиоды не горят</td><td>Нет питания от розетки / переключатель БП в положении OFF</td><td>Проверьте кабель и тумблер на БП</td></tr>
+        <tr><td>Вентиляторы крутятся, экрана нет</td><td>Память не до конца вставлена</td><td>Переустановите планки до щелчка</td></tr>
+        <tr><td>Экран есть, но циклические перезагрузки</td><td>Кабель питания CPU не подключён</td><td>Подключите 8-pin EPS в разъём платы</td></tr>
+        <tr><td>Видеокарта «не видна»</td><td>Монитор подключён к плате, а не к видеокарте</td><td>Переткните кабель в выход видеокарты</td></tr>
+        <tr><td>ПК включается через кнопку на плате, но не от корпуса</td><td>Перепутаны разъёмы PWR+/–</td><td>Переверните коннектор POWER SW</td></tr>
+        <tr><td>Странные звуки (короткие сигналы)</td><td>Код POST от платы</td><td>Сверьте количество сигналов с инструкцией платы</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="cta-block">
+    <a class="btn" href="builds.html">Посмотреть примеры сборок &rarr;</a>
+  </div>
+</div>
+
+</main>
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>О проекте</h4>
+        <p style="color:#94a3b8">Учебный сайт-гайд по самостоятельной сборке ПК: от выбора комплектующих до первого запуска системы.</p>
+      </div>
+      <div>
+        <h4>Разделы</h4>
+        <a href="index.html">Главная</a><a href="pros-cons.html">Плюсы и минусы</a><a href="pick-parts.html">Подбор комплектующих</a><a href="build-guide.html">Пошаговая сборка</a><a href="builds.html">Примеры сборок</a>
+      </div>
+      <div>
+        <h4>Источники информации</h4>
+        <ul class="sources">
+          <li><a href="https://hi-tech.mail.ru/review/57070-kak-sobrat-pk-chtoby-hvatilo-nadolgo/" target="_blank" rel="noopener">Hi-Tech Mail.ru</a> — Как собрать ПК, чтобы хватило надолго</li><li><a href="https://ru.msi.com/Landing/how-to-build-a-pc" target="_blank" rel="noopener">MSI</a> — Как собрать ПК: руководство от MSI</li><li><a href="https://ru.wikihow.com/собрать-компьютер" target="_blank" rel="noopener">wikiHow</a> — Как собрать компьютер — wikiHow</li><li><a href="https://hyperpc.ru/blog/gaming-pc/how-build-gaming-pc-yourself" target="_blank" rel="noopener">HYPERPC</a> — Как собрать игровой ПК самому — HYPERPC</li><li><a href="https://andpro.ru/blog/pc/podvodnye-kamni-pri-sborke-pk-instruktsiya-po-pokupke-i-sborke/" target="_blank" rel="noopener">ANDPRO</a> — Подводные камни при сборке ПК — ANDPRO</li><li><a href="https://digital-razor.ru/media/articles/hardware/cpu-mobo-compatibility/" target="_blank" rel="noopener">Digital Razor</a> — Совместимость процессора и материнской платы</li><li><a href="https://club.dns-shop.ru/blog/t-90-kompyuteryi/20005-kak-podobrat-komplektuuschie-dlya-samostoyatelnoi-sborki-pk/" target="_blank" rel="noopener">Клуб DNS</a> — Как подобрать комплектующие — Клуб DNS</li><li><a href="https://tproger.ru/articles/gajd-kak-sobrat-kompyuter-samomu" target="_blank" rel="noopener">Tproger</a> — Гайд: как собрать компьютер самому — Tproger</li><li><a href="https://lifehacker.ru/stoit-li-sobirat-pk/" target="_blank" rel="noopener">Лайфхакер</a> — Стоит ли собирать ПК — Лайфхакер</li><li><a href="https://journal.citilink.ru/articles/kak-luchshe-sobirat-pk-samomu-ili-zakazat-sborku-v-magazine/" target="_blank" rel="noopener">Ситилинк</a> — Собирать самому или заказать сборку — Ситилинк</li><li><a href="https://club.dns-shop.ru/blog/t-90-kompyuteryi/91739-kupit-gotovyii-pk-ili-sobrat-samostoyatelno/" target="_blank" rel="noopener">Клуб DNS (готовый vs сборка)</a> — Купить готовый ПК или собрать самостоятельно</li><li><a href="https://www.youtube.com/watch?v=8cOzLjkyBXI" target="_blank" rel="noopener">Welson (YouTube)</a> — КАК СОБРАТЬ КОМПЬЮТЕР — подробный гайд шаг за шагом для новичков</li><li><a href="https://rutube.ru/video/cc792eb7f2d3c47f68562fdddeae7814/" target="_blank" rel="noopener">Клуб DNS (Rutube)</a> — Как собрать компьютер — тонкости и важные моменты</li>
+        </ul>
+      </div>
+    </div>
+    <div class="credit">
+      <p>Сделано студентом группы <b>129</b> — <b>СПбТК</b></p>
+      <p style="font-size:.8rem;color:#64748b">&copy; 2026 Учебный проект по сборке ПК</p>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,379 @@
+/* ===== Общие стили сайта «Собрать ПК самостоятельно» ===== */
+:root {
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+    --danger: #dc2626;
+    --success: #16a34a;
+    --dark: #0f172a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+    line-height: 1.65;
+}
+
+img { max-width: 100%; }
+
+a { color: var(--primary); }
+
+/* ----- Шапка ----- */
+.site-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+    color: #fff;
+    padding: 3rem 1rem;
+    text-align: center;
+}
+
+.site-header h1 {
+    margin: 0 0 0.5rem;
+    font-size: 2.2rem;
+    line-height: 1.25;
+}
+
+.site-header p {
+    color: #cbd5e1;
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+}
+
+/* ----- Навигация ----- */
+.top-nav {
+    background: var(--dark);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.top-nav .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.top-nav a {
+    display: block;
+    color: #e2e8f0;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-radius: 6px;
+    transition: background 0.15s, color 0.15s;
+}
+
+.top-nav a:hover { background: #1e293b; color: #fff; }
+
+.top-nav a.active {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* ----- Контейнер ----- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.container.narrow { max-width: 860px; }
+
+main { padding: 2.5rem 1rem 3rem; }
+
+/* ----- Типографика статей ----- */
+article { max-width: 860px; margin: 0 auto; }
+
+article h2 {
+    font-size: 1.6rem;
+    margin: 2.5rem 0 0.75rem;
+    padding-left: 0.75rem;
+    border-left: 4px solid var(--primary);
+}
+
+article h3 { font-size: 1.25rem; margin: 1.75rem 0 0.5rem; }
+
+article p { margin: 0.75rem 0; }
+
+article ul, article ol { padding-left: 1.4rem; }
+
+article li { margin-bottom: 0.4rem; }
+
+.lead {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ----- Врезки ----- */
+.callout {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-left: 4px solid var(--primary);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+}
+
+.warn {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 4px solid var(--danger);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+}
+
+.tip {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-left: 4px solid var(--success);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0;
+}
+
+/* ----- Карточки ----- */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 10px;
+    transition: box-shadow 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    transform: translateY(-3px);
+}
+
+.card h3 { margin: 0 0 0.5rem; font-size: 1.2rem; }
+
+.card p { color: var(--text-secondary); margin: 0; font-size: 0.95rem; }
+
+.card .card-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+
+/* ----- Таблицы ----- */
+.table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    background: var(--card-bg);
+    font-size: 0.95rem;
+}
+
+th, td {
+    border: 1px solid var(--border);
+    padding: 0.6rem 0.9rem;
+    text-align: left;
+    vertical-align: top;
+}
+
+th { background: #f1f5f9; }
+
+/* ----- FAQ (без JavaScript) ----- */
+.faq details {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+
+.faq summary {
+    padding: 1rem 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: #f1f5f9;
+    list-style: none;
+}
+
+.faq summary::-webkit-details-marker { display: none; }
+
+.faq summary::before { content: "▸ "; color: var(--primary); }
+
+.faq details[open] summary::before { content: "▾ "; }
+
+.faq .faq-answer { padding: 1rem 1.25rem; color: var(--text-secondary); }
+
+/* ----- Ошибки ----- */
+.mistake-item {
+    display: flex;
+    gap: 1rem;
+    padding: 0.9rem 0;
+    border-bottom: 1px dashed var(--border);
+}
+
+.mistake-item:last-child { border-bottom: none; }
+
+.mistake-icon {
+    color: var(--danger);
+    font-weight: 700;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* ----- Кнопки ----- */
+.btn {
+    background-color: var(--primary);
+    color: #fff;
+    padding: 0.9rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-block;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover { background-color: var(--primary-hover); transform: translateY(-1px); }
+
+.cta-block { text-align: center; margin: 2.5rem 0 1rem; }
+
+/* ----- Пошаговая сборка ----- */
+.step {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.step h3 {
+    margin: 0 0 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.step-num {
+    background: var(--primary);
+    color: #fff;
+    min-width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+}
+
+/* ----- Сборки ----- */
+.build-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.build-card h3 { margin-top: 0; font-size: 1.35rem; }
+
+.price-tag {
+    display: inline-block;
+    background: #eff6ff;
+    color: var(--primary);
+    font-weight: 700;
+    padding: 0.3rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+}
+
+/* ----- Списки аудитории ----- */
+.audience-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+.audience-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+/* ----- Подвал ----- */
+footer {
+    background: var(--dark);
+    color: #cbd5e1;
+    padding: 2.5rem 1rem 1.5rem;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+}
+
+.footer-col h4 { color: #fff; margin: 0 0 0.75rem; }
+
+.footer-col a {
+    color: #94a3b8;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 0.45rem;
+}
+
+.footer-col a:hover { color: #fff; }
+
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+
+.sources { margin-top: 2rem; border-top: 1px solid #1e293b; padding-top: 1rem; }
+
+.sources h4 { color: #fff; margin: 0 0 0.5rem; }
+
+.sources ul { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 2rem; }
+
+.sources li { margin-bottom: 0.35rem; break-inside: avoid; }
+
+.sources a { color: #7dd3fc; text-decoration: none; }
+
+.sources a:hover { text-decoration: underline; }
+
+.copyright {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #475569;
+    font-size: 0.8rem;
+}
+
+/* ----- Адаптив ----- */
+@media (max-width: 640px) {
+    .site-header h1 { font-size: 1.6rem; }
+    article h2 { font-size: 1.35rem; }
+    .sources ul { columns: 1; }
+}
